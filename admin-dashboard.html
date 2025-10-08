@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - The Stitch Story</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">The Stitch Story Admin</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="dashboard-container">
+
+    <!-- Categories -->
+    <section class="section" id="category-section">
+      <h2>Manage Categories</h2>
+      <form id="categoryForm" class="admin-form">
+        <input type="text" id="categoryName" placeholder="Category Name" required>
+        <input type="file" id="categoryImage" accept="image/*" required>
+        <button type="submit">Add Category</button>
+      </form>
+      <div class="category-list" id="categoryList"></div>
+    </section>
+
+    <!-- Designs -->
+    <section class="section" id="design-section">
+      <h2>Manage Designs</h2>
+      <form id="designForm" class="admin-form">
+        <select id="designCategory" required></select>
+        <input type="text" id="designName" placeholder="Design Name" required>
+        <input type="file" id="designImage" accept="image/*" required>
+        <button type="submit">Add Design</button>
+      </form>
+      <div class="design-list" id="designList"></div>
+    </section>
+
+    <!-- Appointments -->
+    <section class="section" id="appointments-section">
+      <h2>View Appointments</h2>
+      <div class="appointments-list" id="appointmentsList"></div>
+    </section>
+
+    <!-- Feedbacks -->
+    <section class="section" id="feedback-section">
+      <h2>Customer Feedback</h2>
+      <table id="feedbackTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script src="js/admin-dashboard.js"></script>
+  <script src="js/navbar.js"></script>
+</body>
+</html>

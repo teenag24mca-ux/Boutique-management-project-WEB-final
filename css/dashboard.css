@@ -1,0 +1,44 @@
+.dashboard-section {
+  min-height: 90vh;
+  padding: 40px 20px;
+  background: #fefcfb;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-container {
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 900px;
+}
+
+.dashboard-container h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.dashboard-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-container table th,
+.dashboard-container table td {
+  border: 1px solid #d1d5db;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.dashboard-container table th {
+  background: #f59e0b;
+  color: #fff;
+}
+
+.dashboard-container table tr:nth-child(even) {
+  background: #f9f9f9;
+}

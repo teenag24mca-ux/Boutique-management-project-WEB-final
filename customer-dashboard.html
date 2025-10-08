@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard - Boutique Tailoring</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/customer-dashboard.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">The Stitch Story</div>
+      <ul></ul> <!-- Navbar dynamically filled by navbar.js -->
+    </nav>
+  </header>
+
+  <section class="dashboard-section">
+    <div class="dashboard-container">
+      <h2 id="welcomeMsg">Welcome, Customer</h2>
+
+      <div class="dashboard-actions">
+        <button id="newAppointmentBtn" class="btn-primary">Book New Appointment</button>
+        <select id="filterStatus">
+          <option value="all">All</option>
+          <option value="Pending">Pending</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </div>
+
+      <h3>Your Appointments</h3>
+      <table id="appointmentsTable">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Category</th>
+            <th>Design</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Appointments injected here -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Appointment Modal -->
+  <div class="modal" id="appointmentModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">&times;</span>
+      <h3>Book Appointment</h3>
+      <form id="dashboardBookingForm">
+        <div class="form-group">
+          <label for="dashboardService">Select Service</label>
+          <select id="dashboardService" required></select>
+        </div>
+        <div class="form-group category-design-group">
+          <div class="form-group">
+            <label for="dashboardCategory">Select Category</label>
+            <select id="dashboardCategory"></select>
+          </div>
+          <div class="form-group">
+            <label for="dashboardDesign">Select Design</label>
+            <select id="dashboardDesign"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dashboardDate">Select Date</label>
+          <input type="date" id="dashboardDate" required>
+        </div>
+        <div class="form-group">
+          <label for="dashboardTime">Select Time</label>
+          <input type="time" id="dashboardTime" required>
+        </div>
+        <button type="submit" class="btn-primary">Book</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/customer-dashboard.js"></script>
+</body>
+</html>

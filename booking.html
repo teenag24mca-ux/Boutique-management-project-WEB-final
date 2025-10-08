@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">The Stitch Story</div>
+      <ul></ul>
+    </nav>
+  </header>
+
+  <section class="booking-section">
+    <div class="booking-container">
+      <div class="booking-header">
+        <h2 id="userGreeting">Book Your Appointment</h2>
+        <p>Fill in the details to schedule your appointment</p>
+      </div>
+
+      <form id="bookingForm" class="booking-form">
+        <!-- Service -->
+        <div class="form-group">
+          <label for="service">Select Service</label>
+          <select id="service" required>
+            <option value="">--Select Service--</option>
+            <option value="New Cloth">New Cloth</option>
+            <option value="Alteration">Alteration</option>
+            <option value="Saree Falls">Saree Falls</option>
+            <option value="Consultation">Consultation</option>
+          </select>
+        </div>
+
+        <!-- Category -->
+        <div class="form-group" id="categoryDiv" style="display:none;">
+          <label for="category">Select Category</label>
+          <select id="category">
+            <option value="">--Select Category--</option>
+          </select>
+        </div>
+
+        <!-- Design -->
+        <div class="form-group" id="designDiv" style="display:none;">
+          <label for="design">Select Design</label>
+          <select id="design">
+            <option value="">--Select Design--</option>
+          </select>
+        </div>
+
+        <!-- Date -->
+        <div class="form-group">
+          <label for="date">Select Date</label>
+          <input type="date" id="date" required>
+        </div>
+
+        <!-- Time -->
+        <div class="form-group">
+          <label for="time">Select Time</label>
+          <input type="time" id="time" required>
+        </div>
+
+        <button type="submit" class="btn-primary">Book Appointment</button>
+        <p class="success-msg">Appointment booked successfully!</p>
+      </form>
+    </div>
+  </section>
+
+  <script src="js/navbar.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+      const userGreeting = document.getElementById('userGreeting');
+      const serviceSelect = document.getElementById('service');
+      const categorySelect = document.getElementById('category');
+      const designSelect = document.getElementById('design');
+      const categoryDiv = document.getElementById('categoryDiv');
+      const designDiv = document.getElementById('designDiv');
+      const form = document.getElementById('bookingForm');
+      const successMsg = document.querySelector('.success-msg');
+
+      // Redirect if user not logged in
+      if (!loggedInUser) {
+        alert('Please login to book an appointment.');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      userGreeting.textContent = `Hello, ${loggedInUser.name} - Book Your Appointment`;
+
+      // Get data from localStorage
+      function getCategories() {
+        return JSON.parse(localStorage.getItem('categories')) || [];
+      }
+
+      function getDesigns() {
+        return JSON.parse(localStorage.getItem('designs')) || [];
+      }
+
+      // Populate category dropdown
+      function populateCategories() {
+        const categories = getCategories();
+        categorySelect.innerHTML = '<option value="">--Select Category--</option>';
+        categories.forEach(cat => {
+          const opt = document.createElement('option');
+          opt.value = cat.id;
+          opt.textContent = cat.name;
+          categorySelect.appendChild(opt);
+        });
+      }
+
+      // Populate designs based on selected category
+      function populateDesigns(catId) {
+        const designs = getDesigns().filter(d => d.categoryId == catId);
+        designSelect.innerHTML = '<option value="">--Select Design--</option>';
+        designs.forEach(des => {
+          const opt = document.createElement('option');
+          opt.value = des.id;
+          opt.textContent = des.name;
+          designSelect.appendChild(opt);
+        });
+      }
+
+      // Show category/design for "New Cloth" service
+      serviceSelect.addEventListener('change', () => {
+        if (serviceSelect.value === 'New Cloth') {
+          categoryDiv.style.display = 'block';
+          designDiv.style.display = 'block';
+          populateCategories();
+        } else {
+          categoryDiv.style.display = 'none';
+          designDiv.style.display = 'none';
+        }
+      });
+
+      // Update designs when category changes
+      categorySelect.addEventListener('change', () => {
+        populateDesigns(categorySelect.value);
+      });
+
+      // Save booking on submit
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const appointment = {
+          user: loggedInUser.name,
+          email: loggedInUser.email,
+          service: serviceSelect.value,
+          category: categorySelect.options[categorySelect.selectedIndex]?.text || '',
+          design: designSelect.options[designSelect.selectedIndex]?.text || '',
+          date: document.getElementById('date').value,
+          time: document.getElementById('time').value,
+          status: 'Pending'
+        };
+
+        const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+        appointments.push(appointment);
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+
+        successMsg.style.display = 'block';
+        setTimeout(() => successMsg.style.display = 'none', 4000);
+        form.reset();
+        categoryDiv.style.display = 'none';
+        designDiv.style.display = 'none';
+      });
+
+      // Auto-update if admin modifies categories/designs
+      window.addEventListener('storage', (e) => {
+        if (['categories', 'designs'].includes(e.key)) {
+          populateCategories();
+          if (categorySelect.value) populateDesigns(categorySelect.value);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

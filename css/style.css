@@ -1,0 +1,1456 @@
+/* ==================== Reset & Base ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fdfcfb;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ==================== Navbar ==================== */
+header {
+  background: #1f2937;
+  color: #fff;
+  padding: 15px 50px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar .logo {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+  background: #f59e0b;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+/* ==================== Buttons ==================== */
+.btn-primary {
+  background: #ef4444;
+  color: #fff;
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* ==================== Banner ==================== */
+.full-banner {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.full-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(60%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.banner-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  max-width: 90%;
+}
+
+.banner-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.banner-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+}
+
+/* ==================== Auth Buttons (Login & Register) ==================== */
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.auth-buttons a {
+  display: inline-block;
+  background: #ef4444; /* same as btn-primary */
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.auth-buttons a:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+  .auth-buttons {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
+
+
+/* ==================== Footer ==================== */
+footer {
+  background: #1f2937;
+  color: #f3f4f6;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: #f59e0b;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 1024px) {
+  .banner-content h1 { font-size: 3rem; }
+  .banner-content p { font-size: 1.3rem; }
+}
+
+@media (max-width: 768px) {
+  .navbar { flex-direction: column; align-items: flex-start; }
+  .navbar ul { flex-direction: column; gap: 10px; margin-top: 10px; }
+  .banner-content h1 { font-size: 2.2rem; }
+  .banner-content p { font-size: 1.1rem; }
+  .btn-primary { padding: 12px 25px; font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+  .banner-content h1 { font-size: 1.8rem; }
+  .banner-content p { font-size: 1rem; }
+}
+
+/* ==================== Categories ==================== */
+.categories-section {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  background: #fefcfb;
+}
+
+.categories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.category-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.category-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.category-card h3 {
+  padding: 15px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* ==================== Designs ==================== */
+.designs-section {
+  min-height: 100vh;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.designs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.design-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.design-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.design-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.design-card h3 {
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.design-card button {
+  margin: 10px;
+  padding: 10px 20px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.design-card button:hover {
+  background: #b91c1c;
+}
+/* ==================== View Designs Button ==================== */
+.category-card button {
+  margin-bottom: 20px;
+  padding: 10px 18px;
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
+}
+
+.category-card button:hover {
+  background: linear-gradient(90deg, #dc2626, #b91c1c);
+  box-shadow: 0 6px 15px rgba(239, 68, 68, 0.4);
+  transform: scale(1.05);
+}
+
+.category-card button:active {
+  transform: scale(0.97);
+}
+
+/* ==================== Services ==================== */
+.services-section {
+  min-height: 100vh;
+  padding: 60px 20px;
+  text-align: center;
+  background: #fefcfb;
+}
+
+.services-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 40px;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.service-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.service-card .btn-primary {
+  margin-top: 15px;
+  padding: 10px 25px;
+}
+
+/* ==================== Booking ==================== */
+/* Booking Section */
+.booking-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #fefcfb;
+}
+
+.booking-container {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.booking-header h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.booking-header p {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 25px;
+}
+
+.booking-form .form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.booking-form label {
+  font-weight: 600;
+  color: #1f2937;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  outline: none;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 6px rgba(245,158,11,0.3);
+}
+
+.booking-form .btn-primary {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #ef4444;
+  border-radius: 12px;
+  border: none;
+  margin-top: 10px;
+}
+
+.booking-form .btn-primary:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+.success-msg {
+  display: none;
+  margin-top: 12px;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .booking-container { padding: 35px 20px; }
+}
+
+@media (max-width: 480px) {
+  .booking-container { padding: 25px 15px; }
+  .booking-header h2 { font-size: 1.7rem; }
+}
+
+
+/* ==================== Auth Section (Login/Register) ==================== */
+/* ==================== Reset & Base ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fdfcfb;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ==================== Navbar ==================== */
+header {
+  background: #1f2937;
+  color: #fff;
+  padding: 15px 50px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar .logo {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+  background: #f59e0b;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+/* ==================== Auth Section ==================== */
+.auth-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #fefcfb;
+}
+
+.auth-container {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+}
+
+.auth-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.auth-container p {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 25px;
+}
+
+/* Form Groups */
+.auth-form .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.auth-form label {
+  display: block;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 6px;
+}
+
+.auth-form input,
+.auth-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  outline: none;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 6px rgba(245,158,11,0.3);
+}
+
+/* Submit Button */
+.auth-form .btn-primary {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #ef4444;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-form .btn-primary:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* Success / Error Messages */
+.auth-msg {
+  display: none;
+  margin-top: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.auth-msg.success {
+  color: #16a34a;
+}
+
+.auth-msg.error {
+  color: #ef4444;
+}
+
+/* Redirect */
+.redirect {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.redirect a {
+  color: #f59e0b;
+  text-decoration: none;
+}
+
+.redirect a:hover {
+  text-decoration: underline;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 25px 15px;
+  }
+  .auth-container h2 {
+    font-size: 1.7rem;
+  }
+}
+
+/*dashboard*/
+/* ==================== Dashboard ==================== */
+.dashboard-section {
+  min-height: 100vh;
+  padding: 50px 20px;
+  background: #fefcfb;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.dashboard-container {
+  width: 100%;
+  max-width: 1000px;
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.dashboard-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+/* Appointment Table */
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.appointment-table th, .appointment-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.appointment-table th {
+  background: #f59e0b;
+  color: #fff;
+  font-weight: 600;
+}
+
+.appointment-table td {
+  color: #1f2937;
+}
+
+/* Status Colors */
+.status-Pending {
+  color: #fbbf24; /* Yellow */
+  font-weight: 600;
+}
+
+.status-In\ Progress {
+  color: #3b82f6; /* Blue */
+  font-weight: 600;
+}
+
+.status-Completed {
+  color: #16a34a; /* Green */
+  font-weight: 600;
+}
+
+/* Admin Management */
+#categoryManagement, #designManagement, #appointmentManagement {
+  margin-bottom: 40px;
+}
+
+#categoryManagement ul, #designManagement ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#categoryManagement li, #designManagement li {
+  margin-bottom: 8px;
+}
+
+#categoryManagement button, #designManagement button {
+  margin-left: 10px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#categoryManagement button:hover, #designManagement button:hover {
+  background: #b91c1c;
+}
+
+#addCategoryForm input, #addDesignForm input, #addDesignForm select {
+  padding: 8px 12px;
+  margin-right: 8px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+#addCategoryForm button, #addDesignForm button {
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* User Name & Logout Button */
+/* Logged-in user name */
+.logged-user {
+  font-weight: 700;
+  color: #f59e0b; /* Orange color */
+  font-size: 1rem;
+  padding: 5px 10px;
+}
+
+/* Logout button */
+.btn-logout {
+  background: #ef4444; /* Same as login/register buttons */
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-logout:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/*customer dashboard*/
+.dashboard-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.dashboard-container h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #1f2937;
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.dashboard-actions select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #f59e0b;
+  color: #fff;
+}
+
+tr:hover {
+  background: #fef3c7;
+}
+
+.btn-cancel {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-cancel:hover {
+  background: #b91c1c;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 500px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.category-design-group {
+  display: flex;
+  gap: 10px;
+}
+
+.category-design-group .form-group {
+  flex: 1;
+}
+
+/* ============================= */
+/* ADMIN DASHBOARD UPDATED STYLE */
+/* ============================= */
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f4f9;
+  color: #1f2937;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  color: #fff;
+}
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover {
+  background: #b91c1c;
+  border-radius: 6px;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Sections */
+.section {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+  color: #ef4444;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+/* Forms */
+.section form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.section form input,
+.section form select,
+.section form button {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.section form button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.section form button:hover {
+  background: #b91c1c;
+}
+
+/* =============================== */
+/* Category & Design Card Styling  */
+/* =============================== */
+.category-list,
+.design-list,
+.appointments-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #fef3f3;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Increased image height */
+.card img {
+  width: 100%;
+  height: 220px; /* was 140px — increased for better visuals */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card h4 {
+  margin: 12px 0 6px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.card button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.card button:hover {
+  background: #b91c1c;
+}
+
+/* ============================= */
+/* View Appointments Section     */
+/* ============================= */
+
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.appointment-card {
+  background: #fff6f6;
+  border-left: 6px solid #ef4444;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.appointment-card:hover {
+  background: #ffeaea;
+  transform: translateY(-3px);
+}
+
+.appointment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.appointment-info h4 {
+  color: #b91c1c;
+  font-size: 1.1rem;
+}
+
+.appointment-info p {
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.appointment-actions button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+.appointment-actions button:hover {
+  background: #b91c1c;
+}
+
+/* Appointments */
+/* About Page Styling */
+.about-page {
+  height: 100vh; /* Full viewport height */
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem; /* balanced padding */
+  box-sizing: border-box;
+}
+
+.about-page .container {
+  max-width: 1100px;
+  width: 100%;
+  text-align: center;
+}
+
+.about-page h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+/* Flex content */
+.about-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Image */
+.about-image img {
+  max-width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Text */
+.about-text {
+  max-width: 500px;
+  text-align: left;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-page {
+    height: auto; /* allow slight scroll on very small screens */
+    padding: 3rem 1rem;
+  }
+
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+}
+
+/* Contact Page */
+/* Contact Page */
+.contact-page {
+  height: 100vh; /* Full viewport height */
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem; /* balanced padding */
+  box-sizing: border-box;
+}
+
+.contact-page .container {
+  max-width: 1100px;
+  width: 100%;
+}
+
+.contact-page h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  color: #222;
+}
+
+.contact-page .intro-text {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Grid layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* Form */
+.contact-form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form .form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #f0a500;
+}
+
+.contact-form .btn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.7rem;
+  background: #f0a500;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form .btn:hover {
+  background: #333;
+}
+
+/* Contact Info */
+.contact-info {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.contact-info h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.contact-info p {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.contact-info a {
+  color: #f0a500;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-page {
+    height: auto; /* allow small scroll on mobile */
+    padding: 3rem 1rem;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-container {
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.section {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+  font-size: 1.6rem;
+  color: #222;
+  margin-bottom: 1rem;
+  border-left: 5px solid crimson;
+  padding-left: 10px;
+}
+
+.admin-form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.admin-form input,
+.admin-form select {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  flex: 1;
+  font-size: 1rem;
+}
+
+.admin-form button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-weight: 600;
+}
+
+.admin-form button:hover {
+  background: #444;
+}
+
+/* --------- Category & Design Cards --------- */
+.item-card {
+  display: inline-block;
+  text-align: center;
+  margin: 12px;
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+.item-card img {
+  width: 160px;          /* Increased width */
+  height: 180px;         /* Increased height */
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.item-card p {
+  font-weight: 600;
+  margin: 5px 0;
+  color: #333;
+}
+
+.item-card button {
+  background: crimson;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.item-card button:hover {
+  background: darkred;
+}
+
+/* --------- Feedback Table --------- */
+#feedbackTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#feedbackTable th, #feedbackTable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+#feedbackTable th {
+  background-color: #222;
+  color: #fff;
+}
+
+#feedbackTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* --------- Appointment Cards --------- */
+.appointment-card {
+  background: #f5f5f5;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border-left: 5px solid crimson;
+}

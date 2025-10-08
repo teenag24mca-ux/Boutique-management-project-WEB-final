@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">The Stitch Story</div>
+      <ul id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="booking.html">Book Appointment</a></li>
+        <li><a href="login.html" id="loginBtn">Login</a></li>
+        <li><a href="register.html" id="registerBtn">Register</a></li>
+        <li><a href="#" id="logoutBtn" style="display:none;">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="dashboard-section">
+    <div class="dashboard-container" id="dashboardContainer">
+      <h2 id="welcomeUser">Welcome!</h2>
+      <!-- Dynamic content inserted by dashboard.js -->
+    </div>
+  </section>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
