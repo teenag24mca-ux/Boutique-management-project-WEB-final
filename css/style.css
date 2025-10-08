@@ -211,6 +211,8 @@ footer a:hover {
   overflow: hidden;
   transition: 0.3s;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .category-card:hover {
@@ -220,8 +222,10 @@ footer a:hover {
 
 .category-card img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: auto;      /* Let height adjust automatically */
+  max-height: 300px; /* Optional: limit very tall images */
+  object-fit: contain; /* Show full image inside the box */
+  border-bottom: 1px solid #eee; /* Optional: separates image from text */
 }
 
 .category-card h3 {
@@ -229,6 +233,7 @@ footer a:hover {
   font-size: 1.3rem;
   font-weight: 700;
   color: #1f2937;
+  flex-shrink: 0;
 }
 
 /* ==================== Designs ==================== */

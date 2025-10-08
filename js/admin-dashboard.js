@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const appointmentsList = document.getElementById("appointmentsList");
 
   // ✅ Utility: Convert image to Base64
-  function getBase64(file, callback) {
+  function getBase64(file, callback, errorCallback) {
     const reader = new FileReader();
     reader.onload = () => callback(reader.result);
+    reader.onerror = () => errorCallback("Error reading file!");
     reader.readAsDataURL(file);
   }
 
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       categoryList.appendChild(div);
 
       const opt = document.createElement("option");
-      opt.value = cat.name; // using name
+      opt.value = cat.name;
       opt.textContent = cat.name;
       designCategory.appendChild(opt);
     });
@@ -56,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       categoryForm.reset();
       loadCategories();
       alert("Category added successfully!");
-    });
+    }, (err) => alert(err));
   });
 
   // ✅ Delete Category
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const categories = JSON.parse(localStorage.getItem("categories")) || [];
     const removedCategory = categories[index].name;
 
-    // Remove designs belonging to this category too
+    // Remove designs belonging to this category
     const designs = JSON.parse(localStorage.getItem("designs")) || [];
     const updatedDesigns = designs.filter(d => d.category !== removedCategory);
     localStorage.setItem("designs", JSON.stringify(updatedDesigns));
@@ -93,23 +94,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ Add Design
+  // ✅ Add Design (Robust Version)
   designForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const category = document.getElementById("designCategory").value;
     const name = document.getElementById("designName").value.trim();
     const file = document.getElementById("designImage").files[0];
 
     if (!category || !name || !file) return alert("Please fill all details!");
 
+    // Validate category exists
+    const categories = JSON.parse(localStorage.getItem("categories")) || [];
+    if (!categories.some(c => c.name === category)) {
+      return alert("Selected category does not exist!");
+    }
+
     getBase64(file, (base64Image) => {
       const designs = JSON.parse(localStorage.getItem("designs")) || [];
+
+      // Prevent duplicate designs
+      if (designs.some(d => d.name.toLowerCase() === name.toLowerCase() && d.category === category)) {
+        return alert("Design already exists in this category!");
+      }
+
       designs.push({ category, name, image: base64Image });
       localStorage.setItem("designs", JSON.stringify(designs));
-      designForm.reset();
+
       loadDesigns();
+      designForm.reset();
       alert("Design added successfully!");
-    });
+    }, (err) => alert(err));
   });
 
   // ✅ Delete Design
@@ -120,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDesigns();
   };
 
-  // ✅ Load Appointments (optional)
+  // ✅ Load Appointments
   function loadAppointments() {
     const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
     appointmentsList.innerHTML = "";
@@ -142,11 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ Load Feedbacks (optional)
+  // ✅ Load Feedbacks
   function loadFeedbacks() {
     const feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
     const tbody = document.querySelector("#feedbackTable tbody");
-    if (!tbody) return; // skip if not present
+    if (!tbody) return;
     tbody.innerHTML = "";
 
     if (feedbacks.length === 0) {
