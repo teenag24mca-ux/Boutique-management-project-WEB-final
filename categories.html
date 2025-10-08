@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Categories - Boutique Tailoring</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categories - The Stitch Story</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <!-- Header / Navbar -->
@@ -17,18 +17,48 @@
 
   <!-- Categories Section -->
   <section class="categories-section">
+    <h2>Our Categories</h2>
     <div class="categories-container" id="categoriesContainer">
-      <!-- Categories will be injected here by categories.js -->
+      <!-- Categories will be injected here dynamically -->
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 The Stitch Story | Designed with ❤️ | <a href="contact.html">Contact Us</a></p>
+    <p>© 2025 The Stitch Story | Designed with ❤️ | 
+      <a href="contact.html">Contact Us</a>
+    </p>
   </footer>
 
   <!-- Scripts -->
   <script src="js/navbar.js"></script>
-  <script src="js/categories.js"></script>
+  <script>
+    // ✅ categories.js logic inline
+    document.addEventListener('DOMContentLoaded', () => {
+      const categoriesContainer = document.getElementById('categoriesContainer');
+      const categories = JSON.parse(localStorage.getItem('categories')) || [];
+
+      categoriesContainer.innerHTML = '';
+
+      if (categories.length === 0) {
+        categoriesContainer.innerHTML = '<p>No categories available.</p>';
+        return;
+      }
+
+      categories.forEach(category => {
+        const card = document.createElement('div');
+        card.classList.add('category-card');
+        card.innerHTML = `
+          <img src="${category.image}" alt="${category.name}">
+          <h3>${category.name}</h3>
+        `;
+        card.addEventListener('click', () => {
+          localStorage.setItem('selectedCategory', JSON.stringify(category));
+          window.location.href = 'designs.html';
+        });
+        categoriesContainer.appendChild(card);
+      });
+    });
+  </script>
 </body>
 </html>

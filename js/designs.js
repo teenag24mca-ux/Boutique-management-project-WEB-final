@@ -10,37 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   categoryTitle.innerText = category.name;
 
-  let allDesigns = JSON.parse(localStorage.getItem('designs')) || [];
+  const allDesigns = JSON.parse(localStorage.getItem('designs')) || [];
 
-  // 🔍 Debug: See what is stored in localStorage
-  console.log("All designs in storage:", allDesigns);
-  console.log("Selected category:", category);
-
-  // Fix filter: make sure categoryId is compared as number
-  const designs = allDesigns.filter(d => Number(d.categoryId) === Number(category.id));
-
-  // 🔍 Debug: See what matched
-  console.log("Filtered designs for this category:", designs);
+  // ✅ Filter designs by category name
+  const designs = allDesigns.filter(d => d.category === category.name);
 
   designsContainer.innerHTML = '';
+
   if (designs.length === 0) {
     designsContainer.innerHTML = '<p style="text-align:center;">No designs available for this category.</p>';
     return;
   }
 
+  // ✅ Show designs
   designs.forEach(design => {
     const card = document.createElement('div');
     card.classList.add('design-card');
     card.innerHTML = `
       <img src="${design.image || 'images/default.png'}" alt="${design.name}">
       <h3>${design.name}</h3>
-      <button onclick="bookDesign('${design.name}')">Book This Design</button>
+      <button onclick="bookDesign('${design.name}', '${design.category}')">Book This Design</button>
     `;
     designsContainer.appendChild(card);
   });
 });
 
-function bookDesign(designName){
-  localStorage.setItem('selectedDesign', designName);
+// ✅ Book Design Function
+function bookDesign(designName, categoryName) {
+  localStorage.setItem('selectedDesign', JSON.stringify({ name: designName, category: categoryName }));
   window.location.href = 'booking.html';
 }

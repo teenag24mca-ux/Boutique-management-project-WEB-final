@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const designCategory = document.getElementById("designCategory");
   const appointmentsList = document.getElementById("appointmentsList");
 
-  // ✅ Utility to convert image to Base64
+  // ✅ Utility: Convert image to Base64
   function getBase64(file, callback) {
     const reader = new FileReader();
     reader.onload = () => callback(reader.result);
     reader.readAsDataURL(file);
   }
 
-  // ✅ Load & Render Categories
+  // ✅ Load Categories
   function loadCategories() {
     const categories = JSON.parse(localStorage.getItem("categories")) || [];
     categoryList.innerHTML = "";
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       categoryList.appendChild(div);
 
       const opt = document.createElement("option");
-      opt.value = cat.name;
+      opt.value = cat.name; // using name
       opt.textContent = cat.name;
       designCategory.appendChild(opt);
     });
@@ -46,6 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getBase64(file, (base64Image) => {
       const categories = JSON.parse(localStorage.getItem("categories")) || [];
+      // Prevent duplicates
+      if (categories.some(c => c.name.toLowerCase() === name.toLowerCase())) {
+        alert("Category name already exists!");
+        return;
+      }
       categories.push({ name, image: base64Image });
       localStorage.setItem("categories", JSON.stringify(categories));
       categoryForm.reset();
@@ -57,12 +62,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ Delete Category
   window.deleteCategory = (index) => {
     const categories = JSON.parse(localStorage.getItem("categories")) || [];
+    const removedCategory = categories[index].name;
+
+    // Remove designs belonging to this category too
+    const designs = JSON.parse(localStorage.getItem("designs")) || [];
+    const updatedDesigns = designs.filter(d => d.category !== removedCategory);
+    localStorage.setItem("designs", JSON.stringify(updatedDesigns));
+
+    // Remove the category
     categories.splice(index, 1);
     localStorage.setItem("categories", JSON.stringify(categories));
     loadCategories();
+    loadDesigns();
   };
 
-  // ✅ Load & Render Designs
+  // ✅ Load Designs
   function loadDesigns() {
     const designs = JSON.parse(localStorage.getItem("designs")) || [];
     designList.innerHTML = "";
@@ -106,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDesigns();
   };
 
-  // ✅ Load Appointments
+  // ✅ Load Appointments (optional)
   function loadAppointments() {
     const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
     appointmentsList.innerHTML = "";
@@ -128,10 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ Load Feedbacks
+  // ✅ Load Feedbacks (optional)
   function loadFeedbacks() {
     const feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
     const tbody = document.querySelector("#feedbackTable tbody");
+    if (!tbody) return; // skip if not present
     tbody.innerHTML = "";
 
     if (feedbacks.length === 0) {
@@ -151,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ Initialize Everything
+  // ✅ Initialize everything
   loadCategories();
   loadDesigns();
   loadAppointments();
