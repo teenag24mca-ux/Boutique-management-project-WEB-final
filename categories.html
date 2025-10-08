@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Categories & Designs - The Stitch Story</title>
+  <title>Categories - The Stitch Story</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -23,14 +23,6 @@
     </div>
   </section>
 
-  <!-- Designs Section -->
-  <section class="designs-section" id="designsSection" style="display: none;">
-    <h2 id="designsTitle">Designs</h2>
-    <div class="designs-container" id="designsContainer">
-      <!-- Designs will be injected here dynamically -->
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer>
     <p>© 2025 The Stitch Story | Designed with ❤️ | 
@@ -41,14 +33,10 @@
   <!-- Scripts -->
   <script src="js/navbar.js"></script>
   <script>
+    // ✅ categories.js logic inline
     document.addEventListener('DOMContentLoaded', () => {
       const categoriesContainer = document.getElementById('categoriesContainer');
-      const designsSection = document.getElementById('designsSection');
-      const designsContainer = document.getElementById('designsContainer');
-      const designsTitle = document.getElementById('designsTitle');
-
       const categories = JSON.parse(localStorage.getItem('categories')) || [];
-      const allDesigns = JSON.parse(localStorage.getItem('designs')) || [];
 
       categoriesContainer.innerHTML = '';
 
@@ -57,7 +45,6 @@
         return;
       }
 
-      // 🧵 Render all categories
       categories.forEach(category => {
         const card = document.createElement('div');
         card.classList.add('category-card');
@@ -65,50 +52,13 @@
           <img src="${category.image}" alt="${category.name}">
           <h3>${category.name}</h3>
         `;
-
-        // When category clicked → show designs below
         card.addEventListener('click', () => {
-          showDesignsForCategory(category.name);
+          localStorage.setItem('selectedCategory', JSON.stringify(category));
+          window.location.href = 'designs.html';
         });
-
         categoriesContainer.appendChild(card);
       });
-
-      // 🎨 Show designs for the selected category
-      function showDesignsForCategory(categoryName) {
-        const filteredDesigns = allDesigns.filter(d => d.category === categoryName);
-
-        designsContainer.innerHTML = '';
-        designsTitle.innerText = `${categoryName} Designs`;
-
-        if (filteredDesigns.length === 0) {
-          designsContainer.innerHTML = '<p>No designs available for this category.</p>';
-          designsSection.style.display = 'block';
-          return;
-        }
-
-        filteredDesigns.forEach(design => {
-          const designCard = document.createElement('div');
-          designCard.classList.add('design-card');
-          designCard.innerHTML = `
-            <img src="${design.image}" alt="${design.name}">
-            <h3>${design.name}</h3>
-            <p>(${design.category})</p>
-            <button onclick="bookDesign('${design.name}')">Book This Design</button>
-          `;
-          designsContainer.appendChild(designCard);
-        });
-
-        designsSection.style.display = 'block';
-        window.scrollTo({ top: designsSection.offsetTop, behavior: 'smooth' });
-      }
     });
-
-    // 🪡 Book Design → store selected design
-    function bookDesign(designName) {
-      localStorage.setItem('selectedDesign', designName);
-      window.location.href = 'booking.html';
-    }
   </script>
 </body>
 </html>
